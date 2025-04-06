@@ -1,0 +1,20 @@
+name: 🚀 bot-service - deploy preview
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: bot-service
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Railway deploy to testing
+        run: railway up --service bot-service --env testing
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_BOT }}

@@ -1,0 +1,29 @@
+name: 🧪 pricing-service - checks
+
+on:
+  pull_request:
+    paths:
+      - 'pricing-service/**'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: pricing-service
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm run test
