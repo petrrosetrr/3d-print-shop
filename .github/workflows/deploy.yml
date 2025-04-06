@@ -1,0 +1,60 @@
+name: Deploy Affected Services
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      bot: ${{ steps.filter.outputs.bot }}
+      pricing: ${{ steps.filter.outputs.pricing }}
+      i18n: ${{ steps.filter.outputs.i18n }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check which folders changed
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            bot:
+              - 'bot-service/**'
+            pricing:
+              - 'pricing-service/**'
+            i18n:
+              - 'i18n-service/**'
+
+  deploy-bot:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.bot == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy bot-service to Railway
+        run: railway up --service bot-service
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_BOT }}
+
+  deploy-pricing:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.pricing == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy pricing-service to Railway
+        run: railway up --service pricing-service
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PRICING }}
+
+  deploy-i18n:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.i18n == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy i18n-service to Railway
+        run: railway up --service i18n-service
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_I18N }}
