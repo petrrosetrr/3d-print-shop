@@ -2,9 +2,5 @@
   "extends": "./tsconfig.base.json",
   "files": [],
   "include": [],
-  "references": [
-    { "path": "./bot-service" },
-    { "path": "./pricing-service" },
-    { "path": "./i18n-service" }
-  ]
+  "references": [{ "path": "./bot-service" }, { "path": "./pricing-service" }]
 }
