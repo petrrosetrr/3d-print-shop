@@ -19,15 +19,14 @@ jobs:
   deploy:
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
+    container: ghcr.io/railwayapp/cli:latest
+
     defaults:
       run:
         working-directory: ${{ inputs.service }}
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
 
       - name: Deploy to Railway
         env:
