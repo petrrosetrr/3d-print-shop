@@ -1,4 +1,4 @@
-name: check-on-main
+name: check-main
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: release-service
+name: 🚀 release-service
 
 on:
   workflow_dispatch:
