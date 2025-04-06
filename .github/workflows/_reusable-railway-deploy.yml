@@ -20,14 +20,8 @@ jobs:
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     container: ghcr.io/railwayapp/cli:latest
-
-    defaults:
-      run:
-        working-directory: ${{ inputs.service }}
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

@@ -1,0 +1,33 @@
+{
+  "plugins": {
+    "services": [
+      {
+        "name": "bot-service",
+        "rootDirectory": "bot-service",
+        "port": 3000,
+        "envVars": {
+          "PORT": "3000",
+          "BOT_TOKEN": "",
+          "API_BASE_URL": "http://localhost:3002",
+          "I18N_BASE_URL": "http://localhost:3003"
+        }
+      },
+      {
+        "name": "pricing-service",
+        "rootDirectory": "pricing-service",
+        "port": 3002,
+        "envVars": {
+          "PORT": "3002"
+        }
+      },
+      {
+        "name": "i18n-service",
+        "rootDirectory": "i18n-service",
+        "port": 3003,
+        "envVars": {
+          "PORT": "3003"
+        }
+      }
+    ]
+  }
+}
