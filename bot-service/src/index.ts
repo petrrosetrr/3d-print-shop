@@ -9,6 +9,10 @@ app.get('/health', async () => {
   return { status: 'ok' }
 })
 
+app.get('/ping', async () => {
+  return { status: 'ok' }
+})
+
 app
   .listen({ port: Number(process.env.PORT) || 3000, host: '0.0.0.0' })
   .then(() => console.log('🚀 Server running'))
