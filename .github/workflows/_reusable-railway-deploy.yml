@@ -33,5 +33,4 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           echo "🚀 Deploying ${{ inputs.service }} to ${{ inputs.environment }}..."
-          railway login $RAILWAY_TOKEN
-          railway up --environment ${{ inputs.environment }} --service ${{ inputs.service }}
+          RAILWAY_TOKEN=$RAILWAY_TOKEN railway up --environment ${{ inputs.environment }} --service ${{ inputs.service }}
