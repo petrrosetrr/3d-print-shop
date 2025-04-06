@@ -1,4 +1,4 @@
-name: 🚀 bot-service - deploy preview
+name: 🔁 bot-service - deploy preview
 
 on:
   workflow_dispatch:

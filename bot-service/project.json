@@ -1,0 +1,18 @@
+{
+  "name": "bot-service",
+  "services": [
+    {
+      "name": "bot-service",
+      "rootDirectory": ".",
+      "installCommand": "npm ci",
+      "buildCommand": "npm run build",
+      "startCommand": "npm run start",
+      "envVars": {
+        "PORT": "3000",
+        "BOT_TOKEN": "",
+        "API_BASE_URL": "http://localhost:3002",
+        "I18N_BASE_URL": "http://localhost:3003"
+      }
+    }
+  ]
+}

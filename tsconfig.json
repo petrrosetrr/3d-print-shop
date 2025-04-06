@@ -5,7 +5,6 @@
   "references": [
     { "path": "./bot-service" },
     { "path": "./pricing-service" },
-    { "path": "./i18n-service" },
-    { "path": "./shared" }
+    { "path": "./i18n-service" }
   ]
 }
