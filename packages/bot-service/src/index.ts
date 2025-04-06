@@ -4,7 +4,7 @@ import Fastify from 'fastify'
 config({})
 config({ path: './.env.local', override: true })
 
-const bot = await import('./bot').then((m) => m.bot)
+const bot = require('./bot').bot
 const fastify = Fastify()
 const port = Number(process.env.PORT || 3000)
 const path = process.env.WEBHOOK_PATH || '/bot'
