@@ -1,22 +1,11 @@
-import Fastify from 'fastify'
-import dotenv from 'dotenv'
+import { config } from 'dotenv'
 
-dotenv.config()
+config({})
+config({ path: './.env.local', override: true })
 
-const app = Fastify({ logger: true })
+const bot = await import('./bot').then((m) => m.bot)
+console.log('🚀 Bot started')
+bot.launch()
 
-app.get('/health', async () => {
-  return { status: 'ok' }
-})
-
-app.get('/ping', async () => {
-  return { status: 'ok' }
-})
-
-app
-  .listen({ port: Number(process.env.PORT) || 3000, host: '0.0.0.0' })
-  .then(() => console.log('🚀 Server running'))
-  .catch((err) => {
-    app.log.error(err)
-    process.exit(1)
-  })
+process.once('SIGINT', () => bot.stop('SIGINT'))
+process.once('SIGTERM', () => bot.stop('SIGTERM'))
