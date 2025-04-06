@@ -14,8 +14,3 @@ jobs:
     uses: ./.github/workflows/_reusable-check.yml
     with:
       service: pricing-service
-
-  check-i18n-service:
-    uses: ./.github/workflows/_reusable-check.yml
-    with:
-      service: i18n-service

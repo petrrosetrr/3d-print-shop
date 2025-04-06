@@ -3,17 +3,24 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/bot-service",
+    "packages/pricing-service"
+  ],
   "engines": {
     "node": "20.x"
   },
   "scripts": {
-    "test": "vitest run --passWithNoTests",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "typecheck": "tsc --noEmit --pretty",
-    "prepare": "husky install"
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "lint:fix": "npm run lint --workspaces",
+    "test": "npm run test --workspaces",
+    "format": "npm run format --workspaces",
+    "format:check": "npm run format:check --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "start": "npm run start --workspaces",
+    "prepare": "husky init"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
