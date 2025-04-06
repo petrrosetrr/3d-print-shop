@@ -1,0 +1,25 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "plugins": {
+    "services": [
+      {
+        "name": "bot-service",
+        "rootDirectory": "packages/bot-service",
+        "port": 3000,
+        "installCommand": "npm ci",
+        "buildCommand": "npm run build",
+        "startCommand": "npm run start",
+        "envVarsFromFile": "packages/bot-service/.env"
+      },
+      {
+        "name": "pricing-service",
+        "rootDirectory": "packages/pricing-service",
+        "port": 3002,
+        "installCommand": "npm ci",
+        "buildCommand": "npm run build",
+        "startCommand": "npm run start",
+        "envVarsFromFile": "packages/pricing-service/.env"
+      }
+    ]
+  }
+}

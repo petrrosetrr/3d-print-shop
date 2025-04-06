@@ -20,6 +20,9 @@ jobs:
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     container: ghcr.io/railwayapp/cli:latest
+    defaults:
+      run:
+        working-directory: .
     steps:
       - uses: actions/checkout@v3
       - name: Deploy to Railway
