@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run test
+      - run: npm run lint -- --workspace=${{ inputs.service }}
+      - run: npm run typecheck -- --workspace=${{ inputs.service }}
+      - run: npm run test -- --workspace=${{ inputs.service }}

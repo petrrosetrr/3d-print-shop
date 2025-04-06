@@ -11,16 +11,16 @@
     "node": "20.x"
   },
   "scripts": {
-    "dev": "npm run dev",
-    "build": "npm run build",
-    "lint": "npm run lint",
-    "lint:fix": "npm run lint",
-    "test": "npm run test",
-    "format": "npm run format",
-    "format:check": "npm run format:check",
-    "typecheck": "npm run typecheck",
-    "start": "npm run start",
-    "prepare": "husky init"
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "lint:fix": "npm run lint --workspaces",
+    "test": "npm run test --workspaces",
+    "format": "npm run format --workspaces",
+    "format:check": "npm run format:check --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "start": "npm run start --workspaces",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
@@ -31,6 +31,7 @@
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",

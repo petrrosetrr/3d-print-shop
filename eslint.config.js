@@ -3,6 +3,7 @@ import js from '@eslint/js'
 import ts from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import prettier from 'eslint-config-prettier'
+import globals from 'globals'
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
@@ -16,12 +17,7 @@ export default [
         sourceType: 'module',
       },
       globals: {
-        console: 'readonly',
-        process: 'readonly',
-        __dirname: 'readonly',
-        require: 'readonly',
-        module: 'readonly',
-        Buffer: 'readonly',
+        ...globals.node,
       },
     },
     plugins: {
@@ -30,6 +26,7 @@ export default [
     rules: {
       // твои правила
     },
+    ignores: ['**/node_modules/*', '**/dist/*', '**/coverage/*', '**/.env*'],
   },
   prettier,
 ]
