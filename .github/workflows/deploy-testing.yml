@@ -1,0 +1,22 @@
+name: deploy-to-testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        description: 'Какой сервис деплоить в testing?'
+        required: true
+        type: choice
+        options:
+          - bot-service
+          - pricing-service
+          - i18n-service
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/_reusable-railway-deploy.yml
+    with:
+      service: ${{ inputs.service }}
+      environment: testing
+    secrets:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

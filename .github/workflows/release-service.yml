@@ -1,0 +1,22 @@
+name: release-service
+
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        description: 'Какой сервис деплоить в production?'
+        required: true
+        type: choice
+        options:
+          - bot-service
+          - pricing-service
+          - i18n-service
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/_reusable-railway-deploy.yml
+    with:
+      service: ${{ inputs.service }}
+      environment: production
+    secrets:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

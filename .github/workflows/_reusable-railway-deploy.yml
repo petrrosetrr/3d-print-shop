@@ -1,0 +1,36 @@
+name: reusable-railway-deploy
+
+on:
+  workflow_call:
+    inputs:
+      service:
+        description: 'Название сервиса (папка)'
+        required: true
+        type: string
+      environment:
+        description: 'Целевое окружение (production/testing)'
+        required: true
+        type: string
+    secrets:
+      RAILWAY_TOKEN:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          echo "🚀 Deploying ${{ inputs.service }} to ${{ inputs.environment }}..."
+          railway up --environment ${{ inputs.environment }} --service ${{ inputs.service }}

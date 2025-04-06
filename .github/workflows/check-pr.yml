@@ -1,0 +1,48 @@
+name: check-on-pr
+
+on:
+  pull_request:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      bot: ${{ steps.filter.outputs.bot }}
+      pricing: ${{ steps.filter.outputs.pricing }}
+      i18n: ${{ steps.filter.outputs.i18n }}
+      shared: ${{ steps.filter.outputs.shared }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            shared:
+              - 'shared/**'
+            bot:
+              - 'bot-service/**'
+            pricing:
+              - 'pricing-service/**'
+            i18n:
+              - 'i18n-service/**'
+
+  check-bot-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.shared == 'true' || needs.detect-changes.outputs.bot == 'true'
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: bot-service
+
+  check-pricing-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.shared == 'true' || needs.detect-changes.outputs.pricing == 'true'
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: pricing-service
+
+  check-i18n-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.shared == 'true' || needs.detect-changes.outputs.i18n == 'true'
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: i18n-service

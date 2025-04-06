@@ -1,0 +1,21 @@
+name: check-on-main
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  check-bot-service:
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: bot-service
+
+  check-pricing-service:
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: pricing-service
+
+  check-i18n-service:
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: i18n-service
