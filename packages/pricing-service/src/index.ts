@@ -5,12 +5,8 @@ dotenv.config()
 
 const app = Fastify({ logger: true })
 
-app.get('/health', async () => {
-  return { status: 'ok' }
-})
-
 app.get('/ping', async () => {
-  return { status: 'ok' }
+  return 'pong'
 })
 
 app
