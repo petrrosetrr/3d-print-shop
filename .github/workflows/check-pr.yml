@@ -22,8 +22,6 @@ jobs:
               - 'bot-service/**'
             pricing:
               - 'pricing-service/**'
-            i18n:
-              - 'i18n-service/**'
 
   check-bot-service:
     needs: detect-changes

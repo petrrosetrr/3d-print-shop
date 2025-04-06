@@ -10,7 +10,6 @@ on:
         options:
           - bot-service
           - pricing-service
-          - i18n-service
 
 jobs:
   deploy:
