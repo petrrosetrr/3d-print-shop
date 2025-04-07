@@ -14,3 +14,8 @@ jobs:
     uses: ./.github/workflows/_reusable-check.yml
     with:
       service: pricing-service
+
+  check-admin-panel-service:
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: admin-panel-service

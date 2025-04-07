@@ -10,6 +10,7 @@ on:
         options:
           - bot-service
           - pricing-service
+          - admin-panel-service
 
 jobs:
   deploy:

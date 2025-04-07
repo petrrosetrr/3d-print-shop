@@ -22,6 +22,8 @@ jobs:
               - 'bot-service/**'
             pricing:
               - 'pricing-service/**'
+            admin-panel:
+              - 'admin-panel-service/**'
 
   check-bot-service:
     needs: detect-changes
@@ -36,3 +38,10 @@ jobs:
     uses: ./.github/workflows/_reusable-check.yml
     with:
       service: pricing-service
+
+  check-admin-panel-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.shared == 'true' || needs.detect-changes.outputs.admin-panel == 'true'
+    uses: ./.github/workflows/_reusable-check.yml
+    with:
+      service: admin-panel-service
