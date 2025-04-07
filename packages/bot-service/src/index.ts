@@ -5,17 +5,21 @@ config({})
 config({ path: './.env.local', override: true })
 
 const bot = require('./bot').bot
-const fastify = Fastify()
+const app = Fastify()
 const port = Number(process.env.PORT || 3000)
 const path = process.env.WEBHOOK_PATH || '/bot'
 
-fastify.post(path, async (request, reply) => {
+app.post(path, async (request, reply) => {
   try {
     await bot.handleUpdate(request.body as any)
   } catch (err) {
     console.error('Error handling update:', err)
   }
   reply.send({ ok: true })
+})
+
+app.get('/ping', async () => {
+  return 'pong'
 })
 
 async function start() {
@@ -25,7 +29,7 @@ async function start() {
   await bot.telegram.setWebhook(webhookUrl)
   console.log(`✅ Webhook set to: ${webhookUrl}`)
 
-  await fastify.listen({ port, host: '0.0.0.0' })
+  await app.listen({ port, host: '0.0.0.0' })
   console.log(`🚀 Fastify server running at http://localhost:${port}`)
 }
 
