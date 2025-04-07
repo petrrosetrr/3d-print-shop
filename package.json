@@ -9,7 +9,7 @@
     "packages/admin-panel-service"
   ],
   "engines": {
-    "node": "20.x"
+    "node": "20.10.0"
   },
   "scripts": {
     "dev": "npm run dev --workspaces",
