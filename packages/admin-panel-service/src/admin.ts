@@ -7,7 +7,7 @@ AdminJS.registerAdapter({ Database, Resource })
 
 export async function adminRouter(app: any) {
   const admin = new AdminJS({
-    rootPath: '/admin',
+    rootPath: '/',
     databases: [
       {
         client: new pg.Client({
