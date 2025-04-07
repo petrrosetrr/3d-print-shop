@@ -4,6 +4,7 @@ import ts from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import prettier from 'eslint-config-prettier'
 import globals from 'globals'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
@@ -22,9 +23,12 @@ export default [
     },
     plugins: {
       '@typescript-eslint': ts,
+      'simple-import-sort': simpleImportSort,
     },
     rules: {
-      // твои правила
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+      'import/newline-after-import': 'error',
     },
     ignores: ['**/node_modules/*', '**/dist/*', '**/coverage/*', '**/.env*'],
   },
