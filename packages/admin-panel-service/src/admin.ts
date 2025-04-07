@@ -1,7 +1,7 @@
 import AdminJSFastify from '@adminjs/fastify'
 import { Database, Resource } from '@adminjs/sql'
 import AdminJS from 'adminjs'
-import { Client } from 'pg'
+import pg from 'pg'
 
 AdminJS.registerAdapter({ Database, Resource })
 
@@ -10,7 +10,7 @@ export async function adminRouter(app: any) {
     rootPath: '/admin',
     databases: [
       {
-        client: new Client({
+        client: new pg.Client({
           connectionString: process.env.DATABASE_URL!,
         }),
         name: 'Postgres',
