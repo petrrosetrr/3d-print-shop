@@ -1,5 +1,5 @@
 {
-  "name": "admin-panel",
+  "name": "admin-panel-service",
   "type": "module",
   "scripts": {
     "dev": "tsx --watch src/index.ts",
