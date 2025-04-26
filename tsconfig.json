@@ -5,6 +5,6 @@
   "references": [
     { "path": "./packages/bot-service" },
     { "path": "./packages/pricing-service" },
-    { "path": "./packages/admin-panel-service" }
+    { "path": "./packages/admin-panel"}
   ]
 }

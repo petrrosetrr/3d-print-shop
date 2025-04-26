@@ -1,9 +1,12 @@
 import AdminJSFastify from '@adminjs/fastify'
-import { Database, Resource } from '@adminjs/sql'
+import { Database, Resource } from '@adminjs/prisma'
+import { PrismaClient } from '@prisma/client'
 import AdminJS from 'adminjs'
 import pg from 'pg'
 
-AdminJS.registerAdapter({ Database, Resource })
+const prisma = new PrismaClient()
+
+AdminJS.registerAdapter({ Resource, Database })
 
 export async function adminRouter(app: any) {
   const admin = new AdminJS({
@@ -15,6 +18,11 @@ export async function adminRouter(app: any) {
         }),
         name: 'Postgres',
       },
+    ],
+    resources: [
+      { resource: { model: prisma.order, client: prisma } },
+      { resource: { model: prisma.user, client: prisma } },
+      { resource: { model: prisma.material, client: prisma } },
     ],
     branding: {
       companyName: '3D Print Shop',

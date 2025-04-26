@@ -44,4 +44,4 @@ jobs:
     if: needs.detect-changes.outputs.shared == 'true' || needs.detect-changes.outputs.admin-panel == 'true'
     uses: ./.github/workflows/_reusable-check.yml
     with:
-      service: admin-panel-service
+      service: admin-panel

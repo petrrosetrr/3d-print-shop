@@ -18,4 +18,4 @@ jobs:
   check-admin-panel-service:
     uses: ./.github/workflows/_reusable-check.yml
     with:
-      service: admin-panel-service
+      service: admin-panel

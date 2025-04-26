@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package slicing;
+
+service SlicingService {
+  rpc AnalyzeModel (AnalyzeModelRequest) returns (ModelAnalysis) {}
+  rpc SliceModel (SliceModelRequest) returns (SliceResult) {}
+}
+
+message AnalyzeModelRequest {
+  bytes model_data = 1;
+  string file_name = 2;
+}
+
+message ModelAnalysis {
+  Dimensions dimensions = 1;
+  double volume = 2;
+  int32 polygon_count = 3;
+  BoundingBox bounding_box = 4;
+}
+
+message Dimensions {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+message BoundingBox {
+  Point min = 1;
+  Point max = 2;
+}
+
+message Point {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+message SliceModelRequest {
+  string model_url = 1;
+  string profile = 2;
+  map<string, string> options = 3;
+}
+
+message SliceResult {
+  int32 print_time_minutes = 1;
+  FilamentUsage filament_usage = 2;
+  optional string gcode = 3;
+}
+
+message FilamentUsage {
+  double length_meters = 1;
+  double weight_grams = 2;
+} 
